@@ -1,0 +1,15 @@
+services:
+
+  tts-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tts-app
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+    environment:
+      - KOKORO_BASE_URL=http://192.168.10.50:8880
+      - DEFAULT_TTS_ENGINE=kokoro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
